@@ -11,12 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140807143653) do
+ActiveRecord::Schema.define(version: 20140807144934) do
 
   create_table "contexts", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "projects", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "context_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "projects", ["context_id"], name: "index_projects_on_context_id"
 
 end
