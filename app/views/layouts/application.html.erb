@@ -8,6 +8,14 @@
 </head>
 <body>
 
+<ul>
+  <% @contexts.each do |context| %>
+    <%= content_tag_for :li, context do %>
+      <%= link_to context.name, context %>
+    <% end %>
+  <% end %>
+</ul>
+
 <%= yield %>
 
 </body>
