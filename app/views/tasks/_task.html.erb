@@ -1,6 +1,6 @@
 <li>
 <%= form_for task do |f| %>
-  <%= f.check_box :completed %>
+  <%= f.check_box :completed, id: dom_id(task) %>
   <%= task.name %>
 <% end %>
 </li>

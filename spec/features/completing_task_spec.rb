@@ -7,7 +7,7 @@ feature 'Completing task' do
 
     visit project_path(task.project)
 
-    check :task_completed
+    check "task_#{task.id}"
 
     within '.completed-tasks' do
       expect(page).to have_content 'Finish me'
