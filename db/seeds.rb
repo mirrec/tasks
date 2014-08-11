@@ -16,3 +16,9 @@ PROJECT_NAMES.each do |project_name|
   work.projects.create(name: project_name)
   personal.projects.create(name: project_name)
 end
+
+Project.all.each do |project|
+  5.times do |n|
+    project.tasks.create(name: "Task number #{n}")
+  end
+end

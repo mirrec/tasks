@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140807144934) do
+ActiveRecord::Schema.define(version: 20140811151128) do
 
   create_table "contexts", force: true do |t|
     t.string   "name"
@@ -28,5 +28,15 @@ ActiveRecord::Schema.define(version: 20140807144934) do
   end
 
   add_index "projects", ["context_id"], name: "index_projects_on_context_id"
+
+  create_table "tasks", force: true do |t|
+    t.string   "name"
+    t.boolean  "completed",  default: false, null: false
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tasks", ["project_id"], name: "index_tasks_on_project_id"
 
 end

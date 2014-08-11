@@ -5,5 +5,11 @@ FactoryGirl.define do
 
   factory :project do
     context
+    name 'My Project'
+  end
+
+  factory :task do
+    name 'New Task'
+    project
   end
 end
