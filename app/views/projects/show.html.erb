@@ -1,6 +1,9 @@
 <h1>
   <%= @project.name %>
 </h1>
+<p class="description">
+  <%= @project.description %>
+</p>
 
 <%= form_for [@project, Task.new] do |f| %>
   <%= f.text_field :name %>

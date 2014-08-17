@@ -13,8 +13,9 @@ PROJECT_NAMES = [
 ]
 
 PROJECT_NAMES.each do |project_name|
-  work.projects.create(name: project_name)
-  personal.projects.create(name: project_name)
+  [work, personal].each do |context|
+    context.projects.create(name: project_name, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor feugiat elit. Maecenas cursus enim non sapien dapibus posuere.')
+  end
 end
 
 Project.all.each do |project|
