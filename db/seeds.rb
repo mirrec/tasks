@@ -12,9 +12,13 @@ PROJECT_NAMES = [
   'Finish your 10th Marathon'
 ]
 
-PROJECT_NAMES.each do |project_name|
+PROJECT_NAMES.each_with_index do |project_name, index|
   [work, personal].each do |context|
-    context.projects.create(name: project_name, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor feugiat elit. Maecenas cursus enim non sapien dapibus posuere.')
+    project = context.projects.create(
+      name: project_name,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor feugiat elit. Maecenas cursus enim non sapien dapibus posuere.'
+    )
+    project.update(today: true) if index == 0
   end
 end
 

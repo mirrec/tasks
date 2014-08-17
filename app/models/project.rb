@@ -7,4 +7,6 @@ class Project < ActiveRecord::Base
   has_many :uncompleted_tasks,
     -> { where(completed: false) },
     class_name: 'Task'
+  scope :for_today, -> { where(today: true) }
+  scope :not_for_today, -> { where(today: false) }
 end
