@@ -5,6 +5,8 @@
   <%= @project.description %>
 </p>
 
+<%= link_to 'Edit Project', edit_project_path(@project) %>
+
 <%= form_for [@project, Task.new] do |f| %>
   <%= f.text_field :name %>
 

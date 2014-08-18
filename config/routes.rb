@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   root to: redirect('contexts')
 
-  resources :contexts, only: [:index, :show]
-
-  resources :projects, only: [:show], shallow: true do
-    resources :tasks, only: [:create, :update]
+  resources :contexts, only: [:index, :show], shallow: true do
+    resources :projects, only: [:new, :create, :show, :edit, :update], shallow: true do
+      resources :tasks, only: [:create, :update]
+    end
   end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

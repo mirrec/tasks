@@ -9,4 +9,6 @@ class Project < ActiveRecord::Base
     class_name: 'Task'
   scope :for_today, -> { where(today: true) }
   scope :not_for_today, -> { where(today: false) }
+
+  validates :name, presence: true
 end

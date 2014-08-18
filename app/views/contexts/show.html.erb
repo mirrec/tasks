@@ -1,10 +1,19 @@
-<h1>Contexts#show</h1>
+<h1><%= @context.name %></h1>
 
+<%= link_to 'New Project', new_context_project_path(@context) %>
+
+<h3>Today</h3>
 <div class="today">
-  <h3>Today</h3>
-  <%= render @context.projects.for_today %>
+  <% if @context.projects.for_today.any? %>
+    <%= render @context.projects.for_today %>
+<% else %>
+    <strong>Nothing for today</strong>
+<% end %>
 </div>
 
-<h3>Later</h3>
+
+<% if @context.projects.not_for_today.any? %>
+  <h3>Later</h3>
 
 <%= render @context.projects.not_for_today %>
+<% end %>

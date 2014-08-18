@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140817194617) do
+ActiveRecord::Schema.define(version: 20140817200237) do
 
   create_table "contexts", force: true do |t|
     t.string   "name"
@@ -21,11 +21,11 @@ ActiveRecord::Schema.define(version: 20140817194617) do
 
   create_table "projects", force: true do |t|
     t.string   "name"
-    t.string   "description"
+    t.text     "description", limit: 255
     t.integer  "context_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "today",       default: false
+    t.boolean  "today",                   default: false
   end
 
   add_index "projects", ["context_id"], name: "index_projects_on_context_id"
