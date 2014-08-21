@@ -1,5 +1,7 @@
 <h1><%= @context.name %></h1>
 
+<%= link_to 'Edit Context', edit_context_path(@context) %>
+<%= link_to 'Delete Context', context_path(@context), method: :delete, data: { confirm: 'Are you sure?' } %>
 <%= link_to 'New Project', new_context_project_path(@context) %>
 
 <h3>Today</h3>

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: redirect('contexts')
 
-  resources :contexts, only: [:index, :show], shallow: true do
+  resources :contexts, shallow: true do
     resources :projects, only: [:new, :create, :show, :edit, :update], shallow: true do
       resources :tasks, only: [:create, :update]
     end

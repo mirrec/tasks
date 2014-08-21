@@ -1,0 +1,12 @@
+<%= form_for @context do |f| %>
+  <%= render 'application/form_errors', object: f.object %>
+
+  <p>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  </p>
+
+  <p>
+  <%= f.submit %>
+  </p>
+<% end %>
