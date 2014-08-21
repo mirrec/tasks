@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140817200237) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "contexts", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -21,14 +24,14 @@ ActiveRecord::Schema.define(version: 20140817200237) do
 
   create_table "projects", force: true do |t|
     t.string   "name"
-    t.text     "description", limit: 255
+    t.text     "description"
     t.integer  "context_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "today",                   default: false
+    t.boolean  "today",       default: false
   end
 
-  add_index "projects", ["context_id"], name: "index_projects_on_context_id"
+  add_index "projects", ["context_id"], name: "index_projects_on_context_id", using: :btree
 
   create_table "tasks", force: true do |t|
     t.string   "name"
@@ -38,6 +41,6 @@ ActiveRecord::Schema.define(version: 20140817200237) do
     t.datetime "updated_at"
   end
 
-  add_index "tasks", ["project_id"], name: "index_tasks_on_project_id"
+  add_index "tasks", ["project_id"], name: "index_tasks_on_project_id", using: :btree
 
 end

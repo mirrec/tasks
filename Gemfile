@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.4'
-gem 'sqlite3'
-gem 'sass-rails', '~> 4.0.3'
-gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'jquery-rails'
-gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
+gem 'jquery-rails'
+gem 'pg'
+gem 'rails', '4.1.4'
+gem 'sass-rails', '~> 4.0.3'
+gem 'turbolinks'
+gem 'uglifier', '>= 1.3.0'
 
 group :development do
   gem 'spring'
@@ -21,4 +21,8 @@ group :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
+end
+
+group :production do
+  gem 'rails_12factor'
 end
