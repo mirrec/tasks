@@ -1,1 +1,25 @@
-<h3><%= link_to project.name, project %> (<%= project.uncompleted_tasks.count %>)</h3>
+<h2>
+  <%= link_to project.name, project_path(project) %>
+</h2>
+
+<p class="description">
+  <%= project.description %>
+</p>
+
+<%= link_to 'Edit Project', edit_project_path(project) %>
+
+<%= form_for [project, Task.new] do |f| %>
+  <%= f.text_field :name %>
+
+  <%= f.submit %>
+<% end %>
+
+<%= render project.uncompleted_tasks %>
+
+<% if project.completed_tasks.any? %>
+  <h3>Completed</h3>
+
+  <div class="completed-tasks">
+    <%= render project.completed_tasks %>
+  </div>
+<% end %>
