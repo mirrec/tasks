@@ -3,7 +3,11 @@ Rails.application.routes.draw do
 
   resources :contexts, shallow: true do
     resources :projects, only: [:new, :create, :show, :edit, :update], shallow: true do
-      resources :tasks, only: [:create, :update]
+      resources :tasks, only: [:create] do
+        member do
+          post 'toggle'
+        end
+      end
     end
   end
 

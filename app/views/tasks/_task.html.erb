@@ -1,6 +1,4 @@
-<li>
-<%= form_for task do |f| %>
-  <%= f.check_box :completed, id: dom_id(task) %>
+<%= content_tag_for :li, task do %>
+  <input type="checkbox" <%= 'checked="checked"' if task.completed %> data-url="<%= h toggle_task_path(task) %>" data-remote="true" data-method="post" />
   <%= task.name %>
 <% end %>
-</li>

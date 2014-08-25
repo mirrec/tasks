@@ -1,25 +1,29 @@
-<h2>
-  <%= link_to project.name, project_path(project) %>
-</h2>
+<%= div_for project do %>
+  <h2>
+    <%= link_to project.name, project_path(project) %>
+  </h2>
 
-<p class="description">
+  <p class="description">
   <%= project.description %>
-</p>
+  </p>
 
-<%= link_to 'Edit Project', edit_project_path(project) %>
+  <%= link_to 'Edit Project', edit_project_path(project) %>
 
-<%= form_for [project, Task.new] do |f| %>
-  <%= f.text_field :name %>
+  <%= form_for [project, Task.new] do |f| %>
+    <%= f.text_field :name %>
 
   <%= f.submit %>
-<% end %>
+  <% end %>
 
-<%= render project.uncompleted_tasks %>
+  <div class="uncompleted">
+    <%= render project.uncompleted_tasks %>
+  </div>
 
-<% if project.completed_tasks.any? %>
-  <h3>Completed</h3>
+  <% if project.completed_tasks.any? %>
+    <h3>Completed</h3>
+  <% end %>
 
-  <div class="completed-tasks">
+  <div class="completed">
     <%= render project.completed_tasks %>
   </div>
 <% end %>

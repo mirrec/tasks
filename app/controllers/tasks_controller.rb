@@ -7,12 +7,9 @@ class TasksController < ApplicationController
     redirect_to project_url(params[:project_id])
   end
 
-  def update
-    task = Task.find(params[:id])
-
-    task.update(task_params)
-
-    redirect_to task.project
+  def toggle
+    @task = Task.find(params[:id])
+    @task.toggle(:completed).save
   end
 
   private
