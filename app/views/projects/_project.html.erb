@@ -15,7 +15,7 @@
   <%= f.submit %>
   <% end %>
 
-  <div class="uncompleted">
+  <div class="uncompleted" data-sortable="true" data-update-url="<%= reorder_project_tasks_path project %>">
     <%= render project.uncompleted_tasks %>
   </div>
 

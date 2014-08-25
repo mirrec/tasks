@@ -9,12 +9,19 @@ class TasksController < ApplicationController
 
   def toggle
     @task = Task.find(params[:id])
-    @task.toggle(:completed).save
+    @task.toggle_and_fix_position.save
   end
 
-  private
-
-  def task_params
-    params.require(:task).permit(:completed, :name)
+  def reorder
+    params[:task].each_with_index do |id, index|
+      Task.find(id).update(position: index + 1)
+    end
+    render nothing: true
   end
+end
+
+private
+
+def task_params
+  params.require(:task).permit(:completed, :name)
 end

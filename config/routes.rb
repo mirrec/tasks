@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resources :contexts, shallow: true do
     resources :projects, only: [:new, :create, :show, :edit, :update], shallow: true do
       resources :tasks, only: [:create] do
+        collection do
+          post 'reorder'
+        end
         member do
           post 'toggle'
         end
