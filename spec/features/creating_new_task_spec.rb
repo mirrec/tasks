@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'Creating new task' do
-  scenario 'on project page' do
+  scenario 'on project page', js: true do
     project = create(:project)
 
     visit project_path(project)

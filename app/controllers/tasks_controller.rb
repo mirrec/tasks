@@ -1,10 +1,8 @@
 class TasksController < ApplicationController
   def create
-    task = Project.find(params[:project_id]).tasks.build(task_params)
+    @task = Project.find(params[:project_id]).tasks.build(task_params)
 
-    task.save
-
-    redirect_to project_url(params[:project_id])
+    @task.save
   end
 
   def toggle

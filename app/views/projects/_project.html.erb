@@ -9,7 +9,7 @@
 
   <%= link_to 'Edit Project', edit_project_path(project) %>
 
-  <%= form_for [project, Task.new] do |f| %>
+  <%= form_for [project, Task.new], remote: true do |f| %>
     <%= f.text_field :name %>
 
   <%= f.submit %>
