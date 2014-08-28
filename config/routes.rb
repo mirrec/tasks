@@ -3,11 +3,12 @@ Rails.application.routes.draw do
 
   resources :contexts, shallow: true do
     resources :projects, only: [:new, :create, :show, :edit, :update], shallow: true do
-      resources :tasks, only: [:create, :destroy] do
+      resources :tasks, only: [:create, :edit, :update, :destroy] do
         collection do
           post 'reorder'
         end
         member do
+          get 'cancel_update'
           post 'toggle'
         end
       end

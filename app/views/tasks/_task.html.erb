@@ -1,5 +1,6 @@
 <%= content_tag_for :li, task do %>
   <input type="checkbox" <%= 'checked="checked"' if task.completed %> data-url="<%= h toggle_task_path(task) %>" data-remote="true" data-method="post" />
   <%= task.name %>
+  <%= link_to 'Edit', edit_task_path(task), remote: true %> /
   <%= link_to 'Delete', task_path(task), method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
 <% end %>

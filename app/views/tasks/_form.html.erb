@@ -1,0 +1,8 @@
+<%= content_tag_for :li, @task do %>
+  <%= form_for @task, remote: true do |f| %>
+    <%= f.text_field :name %>
+
+    <%= f.submit 'Save' %>
+    <%= link_to 'Cancel', cancel_update_task_path(@task), remote: true %>
+  <% end %>
+<% end %>

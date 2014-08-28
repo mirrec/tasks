@@ -1,10 +1,20 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:destroy, :toggle]
+  before_action :set_task, only: [:edit, :update, :cancel_update, :destroy, :toggle]
 
   def create
     @task = Project.find(params[:project_id]).tasks.build(task_params)
 
     @task.save
+  end
+
+  def edit
+  end
+
+  def update
+    @task.update(task_params)
+  end
+
+  def cancel_update
   end
 
   def destroy
