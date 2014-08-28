@@ -1,12 +1,17 @@
 class TasksController < ApplicationController
+  before_action :set_task, only: [:destroy, :toggle]
+
   def create
     @task = Project.find(params[:project_id]).tasks.build(task_params)
 
     @task.save
   end
 
+  def destroy
+    @task.destroy
+  end
+
   def toggle
-    @task = Task.find(params[:id])
     @task.toggle_and_fix_position.save
   end
 
@@ -16,10 +21,15 @@ class TasksController < ApplicationController
     end
     render nothing: true
   end
+
+  private
+
+  def task_params
+    params.require(:task).permit(:completed, :name)
+  end
+
+  def set_task
+    @task = Task.find(params[:id])
+  end
 end
 
-private
-
-def task_params
-  params.require(:task).permit(:completed, :name)
-end

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :contexts, shallow: true do
     resources :projects, only: [:new, :create, :show, :edit, :update], shallow: true do
-      resources :tasks, only: [:create] do
+      resources :tasks, only: [:create, :destroy] do
         collection do
           post 'reorder'
         end

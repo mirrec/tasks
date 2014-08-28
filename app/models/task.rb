@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
   belongs_to :project
+  has_one :context, through: :project
 
   acts_as_list scope: :project
 
