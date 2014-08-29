@@ -4,7 +4,7 @@
   </h2>
 
   <p class="description">
-  <%= project.description %>
+  <%= auto_link(project.description, html: { target: '_blank' }) %>
   </p>
 
   <%= link_to 'Edit Project', edit_project_path(project) %>
