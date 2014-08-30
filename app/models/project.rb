@@ -11,4 +11,15 @@ class Project < ActiveRecord::Base
   scope :not_for_today, -> { where(today: false) }
 
   validates :name, presence: true
+
+  acts_as_list scope: :context
+  default_scope { order(:position) }
+
+  def fix_position
+    if today?
+      move_to_bottom
+    else
+      move_to_top
+    end
+  end
 end

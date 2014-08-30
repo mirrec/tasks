@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_context, only: [:new, :create]
-  before_action :set_project, only: [:edit, :update, :show]
+  before_action :set_project, only: [:edit, :update, :show, :toggle_today]
 
   def new
     @project = @context.projects.new
@@ -28,6 +28,14 @@ class ProjectsController < ApplicationController
   end
 
   def show
+  end
+
+  def toggle_today
+    @project.toggle(:today)
+    @project.fix_position
+    @project.save
+
+    redirect_to context_path(@project.context)
   end
 
   private

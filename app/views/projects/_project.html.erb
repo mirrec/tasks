@@ -3,6 +3,8 @@
     <%= link_to project.name, project_path(project) %>
   </h2>
 
+  <%= button_to today_button_text(project), toggle_today_project_path(project) %>
+
   <p class="description">
   <%= auto_link(project.description, html: { target: '_blank' }) %>
   </p>
