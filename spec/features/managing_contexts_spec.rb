@@ -15,7 +15,7 @@ feature 'Managing contexts' do
     context = create(:context, name: 'My Context')
 
     visit context_path(context)
-    click_link 'Edit Context'
+    click_link 'Edit'
 
     fill_in 'Name', with: 'New context name'
     click_button 'Update Context'
@@ -27,7 +27,7 @@ feature 'Managing contexts' do
     context = create(:context, name: 'My Context')
 
     visit context_path(context)
-    click_link 'Delete Context'
+    click_link 'Delete'
 
     expect(page).not_to have_content 'My Context'
   end

@@ -1,22 +1,19 @@
-<%= form_for [@context, @project] do |f| %>
+<%= form_for [@context, @project], role: 'form' do |f| %>
   <%= render 'application/form_errors', object: f.object %>
 
-  <p>
+  <div class="form-group">
     <%= f.label :name %>
-    <%= f.text_field :name %>
-  </p>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
 
-  <p>
+  <div class="form-group">
     <%= f.label :description %>
-    <%= f.text_area :description %>
-  </p>
+    <%= f.text_area :description, class: 'form-control' %>
+  </div>
 
-  <p>
-    <%= f.label :today, 'For today?' %>
-    <%= f.check_box :today %>
-  </p>
+  <div class="checkbox">
+    <%= f.label :today, "#{f.check_box :today} For today?".html_safe %>
+  </div>
 
-  <p>
-    <%= f.submit %>
-  </p>
+  <%= f.submit class: 'btn btn-primary' %>
 <% end %>

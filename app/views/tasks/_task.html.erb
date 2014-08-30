@@ -1,7 +1,11 @@
 <%= content_tag_for :li, task do %>
   <input type="checkbox" <%= 'checked="checked"' if task.completed %> data-url="<%= h toggle_task_path(task) %>" data-remote="true" data-method="post" />
-  <%= auto_link(task.name, html: { target: '_blank' }) %>
-  (<%= task.created_at.strftime('%d.%m.') %>)
-  <%= link_to 'Edit', edit_task_path(task), remote: true %> /
-  <%= link_to 'Delete', task_path(task), method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
+  <span class="task-name"><%= auto_link(task.name, html: { target: '_blank' }) %></span>
+  <span class="date pull-right">
+    <%= task.created_at.strftime('%d.%m.%Y') %>
+  </span>
+  <span class="links pull-right">
+    <%= link_to 'Edit', edit_task_path(task), remote: true %> /
+    <%= link_to 'Delete', task_path(task), method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
+  </span>
 <% end %>

@@ -8,16 +8,21 @@
 </head>
 <body>
 
-<ul>
-  <li><%= link_to 'Home', root_path %></li>
-  <% @contexts.each do |context| %>
-    <%= content_tag_for :li, context do %>
-      <%= link_to context.name, context %>
-    <% end %>
-  <% end %>
-</ul>
+<div class="container">
+  <div class="header">
+    <%= yield :context_header %>
 
-<%= yield %>
+    <ul class="menu list-unstyled">
+      <li>Contexts:</li>
+      <% @contexts.each do |context| %>
+        <%= content_tag_for :li, context do %>
+          <%= link_to context.name, context %>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
 
+  <%= yield %>
+</div>
 </body>
 </html>

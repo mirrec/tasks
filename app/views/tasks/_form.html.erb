@@ -1,8 +1,14 @@
 <%= content_tag_for :li, @task do %>
-  <%= form_for @task, remote: true do |f| %>
-    <%= f.text_field :name %>
+  <%= form_for [@project, @task], remote: true do |f| %>
+    <div class="form-group">
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
 
-    <%= f.submit 'Save' %>
-    <%= link_to 'Cancel', cancel_update_task_path(@task), remote: true %>
+    <%= f.submit 'Save', class: 'btn btn-sm btn-primary' %>
+    <% if @task.new_record? %>
+      <%= link_to 'Cancel', cancel_new_task_project_path(@project), remote: true, class: 'btn btn-link btn-sm' %>
+    <% else %>
+      <%= link_to 'Cancel', cancel_update_task_path(@task), remote: true, class: 'btn btn-link btn-sm' %>
+    <% end %>
   <% end %>
 <% end %>

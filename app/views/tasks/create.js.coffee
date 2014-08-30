@@ -1,2 +1,6 @@
-$('#<%= dom_id @task.project %> .uncompleted').append('<%= j render @task %>')
-$('#<%= dom_id @task.project %> [name="task[name]"]').val('')
+$('#<%= dom_id @task.project %> .uncompleted')
+  .append('<%= j render @task %>')
+$('#<%= dom_id @project %> #new_task')
+  .parent('li')
+  .appendTo('#<%= dom_id @project %> .uncompleted')
+  .find('input[name="task[name]"]').val('').focus()

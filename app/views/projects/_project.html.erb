@@ -1,31 +1,30 @@
 <%= div_for project do %>
+  <div class="project-links pull-right">
+    <%= link_to today_button_text(project), toggle_today_project_path(project), class: 'btn btn-default btn-sm', method: :post %>
+    <%= link_to 'Edit Project', edit_project_path(project), class: 'btn btn-default btn-sm' %>
+    <%= link_to 'Add new task', new_project_task_path(project), class: 'btn btn-default btn-sm', remote: true %>
+  </div>
+
   <h2>
     <%= link_to project.name, project_path(project) %>
   </h2>
 
-  <%= button_to today_button_text(project), toggle_today_project_path(project) %>
 
-  <p class="description">
-  <%= auto_link(project.description, html: { target: '_blank' }) %>
-  </p>
-
-  <%= link_to 'Edit Project', edit_project_path(project) %>
-
-  <%= form_for [project, Task.new], remote: true do |f| %>
-    <%= f.text_field :name %>
-
-  <%= f.submit %>
+  <% if project.description.present? %>
+    <p class="well well-sm">
+    <%= auto_link(project.description, html: { target: '_blank' }) %>
+    </p>
   <% end %>
 
-  <div class="uncompleted" data-sortable="true" data-update-url="<%= reorder_project_tasks_path project %>">
+  <ul class="tasks uncompleted" data-sortable="true" data-update-url="<%= reorder_project_tasks_path project %>">
     <%= render project.uncompleted_tasks %>
-  </div>
+  </ul>
 
   <% if project.completed_tasks.any? %>
     <h3>Completed</h3>
   <% end %>
 
-  <div class="completed">
+  <ul class="tasks completed">
     <%= render project.completed_tasks %>
-  </div>
+  </ul>
 <% end %>
