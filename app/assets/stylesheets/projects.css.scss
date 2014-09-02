@@ -1,8 +1,21 @@
 .project {
+  h2 {
+    a {
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
   .project-links {
     display: none;
   }
   &:hover {
+    h2 {
+      a {
+        width: 468px;
+      }
+    }
     .project-links {
       display: inline;
     }
