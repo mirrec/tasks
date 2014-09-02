@@ -7,4 +7,9 @@
       display: inline;
     }
   }
+  .description {
+    p:last-child {
+      margin: 0;
+    }
+  }
 }

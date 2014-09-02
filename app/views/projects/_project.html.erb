@@ -11,9 +11,9 @@
 
 
   <% if project.description.present? %>
-    <p class="well well-sm">
-    <%= auto_link(project.description, html: { target: '_blank' }) %>
-    </p>
+    <div class="description well well-sm">
+    <%= simple_format(auto_link(project.description, html: { target: '_blank' })) %>
+    </div>
   <% end %>
 
   <ul class="tasks uncompleted" data-sortable="true" data-update-url="<%= reorder_project_tasks_path project %>">
