@@ -1,8 +1,18 @@
 <%= div_for project do %>
   <div class="project-links pull-right">
-    <%= link_to today_button_text(project), toggle_today_project_path(project), class: 'btn btn-default btn-sm', method: :post %>
-    <%= link_to 'Edit Project', edit_project_path(project), class: 'btn btn-default btn-sm' %>
-    <%= link_to 'Add new task', new_project_task_path(project), class: 'btn btn-default btn-sm', remote: true %>
+    <div class="btn-group">
+      <%= link_to today_button_text(project), toggle_today_project_path(project), class: 'btn btn-default btn-sm', method: :post %>
+      <%= link_to 'Add new task', new_project_task_path(project), class: 'btn btn-default btn-sm', remote: true %>
+      <div class="btn-group">
+        <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+          More
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+          <li role="presentation"><%= link_to 'Edit', edit_project_path(project), role: 'menuitem' %></li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <h2>

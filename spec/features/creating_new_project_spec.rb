@@ -20,7 +20,8 @@ feature 'Managing projects' do
     project = create(:project, name: 'My Project')
 
     visit project_path(project)
-    click_link 'Edit Project'
+    click_button 'More'
+    click_link 'Edit'
 
     fill_in 'Name', with: 'Your Project'
     click_button 'Update Project'
