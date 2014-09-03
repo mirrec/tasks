@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: redirect('contexts')
 
   resources :contexts, shallow: true do
-    resources :projects, only: [:new, :create, :show, :edit, :update], shallow: true do
+    resources :projects, only: [:new, :create, :show, :edit, :update, :destroy], shallow: true do
       member do
         post 'toggle_today'
         get 'cancel_new_task'

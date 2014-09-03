@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_context, only: [:new, :create]
-  before_action :set_project, only: [:edit, :update, :show, :cancel_new_task, :toggle_today]
+  before_action :set_project, only: [:edit, :update, :show, :destroy, :cancel_new_task, :toggle_today]
 
   def new
     @project = @context.projects.new
@@ -28,6 +28,11 @@ class ProjectsController < ApplicationController
   end
 
   def show
+  end
+
+  def destroy
+    @project.destroy
+    redirect_via_turbolinks_to context_path(@project.context)
   end
 
   def cancel_new_task
