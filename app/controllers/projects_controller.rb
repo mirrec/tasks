@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_context, only: [:new, :create]
-  before_action :set_project, only: [:edit, :update, :show, :destroy, :cancel_new_task, :toggle_today]
+  before_action :set_project
 
   def new
     @project = @context.projects.new
@@ -35,6 +35,11 @@ class ProjectsController < ApplicationController
     redirect_via_turbolinks_to context_path(@project.context)
   end
 
+  def archive
+    @project.archived!
+    redirect_via_turbolinks_to context_path(@project.context)
+  end
+
   def cancel_new_task
   end
 
@@ -53,7 +58,7 @@ class ProjectsController < ApplicationController
   end
 
   def set_project
-    @project = Project.find(params[:id])
+    @project = Project.find(params[:id]) if params[:id]
   end
 
   def project_params

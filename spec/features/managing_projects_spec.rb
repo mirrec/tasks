@@ -35,4 +35,13 @@ feature 'Managing projects' do
 
     expect(page).not_to have_content 'My Project'
   end
+
+  scenario 'archiving project', js: true do
+    within "#project_#{project.id}" do
+      click_button 'More'
+      click_link 'Archive'
+    end
+
+    expect(page).not_to have_content 'My Project'
+  end
 end

@@ -7,13 +7,14 @@ class Project < ActiveRecord::Base
   has_many :uncompleted_tasks,
     -> { where(completed: false) },
     class_name: 'Task'
+
   scope :for_today, -> { where(today: true) }
   scope :not_for_today, -> { where(today: false) }
+  default_scope { where(status: self.statuses[:active]).order(:position) }
 
   validates :name, presence: true
-
   acts_as_list scope: :context
-  default_scope { order(:position) }
+  enum status: [:active, :archived]
 
   def fix_position
     if today?

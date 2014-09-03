@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :contexts, shallow: true do
     resources :projects, only: [:new, :create, :show, :edit, :update, :destroy], shallow: true do
       member do
+        post :archive
         post 'toggle_today'
         get 'cancel_new_task'
       end
