@@ -30,8 +30,8 @@ class TasksController < ApplicationController
   end
 
   def reorder
-    params[:task].each_with_index do |id, index|
-      Task.find(id).update(position: index + 1)
+    params[:task].try(:each_with_index) do |id, index|
+      Task.find(id).update(position: index + 1, project_id: params[:project_id])
     end
     render nothing: true
   end
