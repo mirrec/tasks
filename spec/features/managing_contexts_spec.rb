@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 feature 'Managing contexts' do
+  before do
+    @user = sign_in_user
+  end
+
   scenario 'creating context' do
     visit root_path
     click_link 'Add new context'
@@ -12,7 +16,7 @@ feature 'Managing contexts' do
   end
 
   scenario 'editing context' do
-    context = create(:context, name: 'My Context')
+    context = create(:context, name: 'My Context', user: @user)
 
     visit context_path(context)
     click_link 'Edit'
@@ -24,7 +28,7 @@ feature 'Managing contexts' do
   end
 
   scenario 'deleting context' do
-    context = create(:context, name: 'My Context')
+    context = create(:context, name: 'My Context', user: @user)
 
     visit context_path(context)
     click_link 'Delete'

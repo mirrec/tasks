@@ -9,7 +9,7 @@ class ContextsController < ApplicationController
   end
 
   def create
-    @context = Context.new(context_params)
+    @context = scope.new(context_params)
 
     if @context.save
       redirect_to context_path(@context)
@@ -40,10 +40,14 @@ class ContextsController < ApplicationController
   private
 
   def set_context
-    @context = Context.find(params[:id])
+    @context = scope.find(params[:id])
   end
 
   def context_params
     params.require(:context).permit(:name)
+  end
+
+  def scope
+    current_user.contexts
   end
 end

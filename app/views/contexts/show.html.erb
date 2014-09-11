@@ -1,15 +1,13 @@
 <% content_for :context_header do %>
-  <ul class="pull-right menu">
-    <li>
-    <%= link_to 'Edit', edit_context_path(@context) %> |
-    </li>
-    <li>
-    <%= link_to 'Delete', context_path(@context), method: :delete, data: { confirm: 'Are you sure?' } %> |
-    </li>
-    <li>
-    <%= link_to 'New Project', new_context_project_path(@context) %>
-    </li>
-  </ul>
+  <li>
+  <%= link_to 'Edit', edit_context_path(@context) %> |
+  </li>
+  <li>
+  <%= link_to 'Delete', context_path(@context), method: :delete, data: { confirm: 'Are you sure?' } %> |
+  </li>
+  <li>
+  <%= link_to 'New Project', new_context_project_path(@context) %> |
+  </li>
 <% end %>
 
 <%= div_for @context do %>

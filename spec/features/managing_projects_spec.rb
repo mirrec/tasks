@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 feature 'Managing projects' do
-  let(:project)  { create(:project, name: 'My Project') }
+  let(:project)  { create(:project, name: 'My Project', user: user) }
+  let(:user) { sign_in_user }
+
   before do
     visit context_path(project)
     find("#project_#{project.id}").hover

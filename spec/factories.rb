@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :context do
     name 'My Context'
+    user
   end
 
   factory :project do
@@ -11,5 +12,12 @@ FactoryGirl.define do
   factory :task do
     name 'New Task'
     project
+  end
+
+  factory :user do
+    sequence :email do |n|
+      "user-#{n}@example.com"
+    end
+    password 'password'
   end
 end

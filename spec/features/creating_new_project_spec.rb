@@ -1,8 +1,10 @@
 require 'spec_helper'
 
 feature 'Managing projects' do
+  let(:user) { sign_in_user }
+
   scenario 'creating new project' do
-    context = create(:context)
+    context = create(:context, user: user)
 
     visit context_path(context)
 
@@ -17,7 +19,7 @@ feature 'Managing projects' do
   end
 
   scenario 'editing project' do
-    project = create(:project, name: 'My Project')
+    project = create(:project, name: 'My Project', user: user)
 
     visit project_path(project)
     click_button 'More'

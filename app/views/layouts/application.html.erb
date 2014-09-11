@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tasks</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <%= render 'layouts/header_content' %>
 </head>
 <body>
 
 <div class="container">
   <div class="header">
-    <%= yield :context_header %>
+    <ul class="pull-right menu">
+      <%= yield :context_header %>
+      <%= link_to 'Sign out', signout_path, method: :delete %>
+    </ul>
 
     <ul class="menu list-unstyled">
       <li>Contexts:</li>

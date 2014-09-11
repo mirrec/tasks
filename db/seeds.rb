@@ -1,8 +1,11 @@
-Context.delete_all
-Project.delete_all
+User.destroy_all
+Context.destroy_all
+Project.destroy_all
+Task.destroy_all
 
-work = Context.create(name: 'Work')
-personal = Context.create(name: 'Personal')
+user = User.create(email: 'user@example.com', password: 'password')
+work = Context.create(name: 'Work', user: user)
+personal = Context.create(name: 'Personal', user: user)
 
 PROJECT_NAMES = [
   'Build successfull company',
@@ -16,7 +19,8 @@ PROJECT_NAMES.each_with_index do |project_name, index|
   [work, personal].each do |context|
     project = context.projects.create(
       name: project_name,
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor feugiat elit. Maecenas cursus enim non sapien dapibus posuere.'
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor feugiat elit. Maecenas cursus enim non sapien dapibus posuere.',
+      context: context
     )
     project.update(today: true) if index == 0
   end

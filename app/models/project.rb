@@ -1,6 +1,7 @@
 class Project < ActiveRecord::Base
   belongs_to :context
-  has_many :tasks
+  has_one :user, through: :context
+  has_many :tasks, dependent: :destroy
   has_many :completed_tasks,
     -> { where(completed: true) },
     class_name: 'Task'

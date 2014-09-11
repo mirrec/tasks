@@ -3,18 +3,25 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_filter :authenticate
   before_filter :set_contexts
-  before_filter :authenticate if Rails.env.production?
+
+  attr_reader :current_user
+  helper_method :current_user
 
   private
 
   def set_contexts
-    @contexts = Context.all
+    @contexts = current_user.contexts if current_user
   end
 
   def authenticate
-    authenticate_or_request_with_http_basic do |username, password|
-      username == ENV['login'] && password == ENV['password']
+    unless @current_user = User.find_by(id: session[:user_id])
+      redirect_to signin_path
     end
+  end
+
+  def sign_in(user)
+    session[:user_id] = user.id
   end
 end

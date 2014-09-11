@@ -54,14 +54,18 @@ class ProjectsController < ApplicationController
   private
 
   def set_context
-    @context = Context.find(params[:context_id])
+    @context = current_user.contexts.find(params[:context_id])
   end
 
   def set_project
-    @project = Project.find(params[:id]) if params[:id]
+    @project = scope.find(params[:id]) if params[:id]
   end
 
   def project_params
     params.require(:project).permit(:name, :description, :today)
+  end
+
+  def scope
+    current_user.projects
   end
 end

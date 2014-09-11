@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 feature 'Managing tasks' do
-  scenario 'user creates task', js: true do
-    project = create(:project)
+  let(:project) { create(:project, user: user) }
+  let(:user) { sign_in_user }
 
+  scenario 'user creates task', js: true do
     visit project_path(project)
 
     find("#project_#{project.id}").hover
@@ -16,7 +17,7 @@ feature 'Managing tasks' do
   end
 
   scenario 'user edits task', js: true do
-    task = create(:task, name: 'Edit me')
+    task = create(:task, name: 'Edit me', project: project)
     visit context_path(task.context)
 
     find("#task_#{task.id}").hover
@@ -31,7 +32,7 @@ feature 'Managing tasks' do
   end
 
   scenario 'user deletes task', js: true do
-    task = create(:task, name: 'Delete me')
+    task = create(:task, name: 'Delete me', project: project)
     visit context_path(task.context)
 
     find("#task_#{task.id}").hover

@@ -31,7 +31,7 @@ class TasksController < ApplicationController
 
   def reorder
     params[:task].try(:each_with_index) do |id, index|
-      Task.find(id).update(position: index + 1, project_id: params[:project_id])
+      scope.find(id).update(position: index + 1, project_id: params[:project_id])
     end
     render nothing: true
   end
@@ -43,10 +43,14 @@ class TasksController < ApplicationController
   end
 
   def set_task
-    @task = Task.find(params[:id])
+    @task = scope.find(params[:id])
   end
 
   def set_project
-    @project = Project.find(params[:project_id])
+    @project = current_user.projects.find(params[:project_id])
+  end
+
+  def scope
+    current_user.tasks
   end
 end
