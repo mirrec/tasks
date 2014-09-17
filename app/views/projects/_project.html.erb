@@ -22,7 +22,6 @@
     <%= link_to project.name, project_path(project) %>
   </h2>
 
-
   <% if project.description.present? %>
     <div class="description well well-sm">
     <%= auto_link(simple_format(project.description), html: { target: '_blank' }) %>
@@ -33,11 +32,5 @@
     <%= render project.uncompleted_tasks %>
   </ul>
 
-  <% if project.completed_tasks.any? %>
-    <h3>Completed</h3>
-  <% end %>
-
-  <ul class="tasks completed">
-    <%= render project.completed_tasks %>
-  </ul>
+  <%= render 'projects/completed_tasks', project: project %>
 <% end %>

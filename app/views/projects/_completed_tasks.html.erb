@@ -1,0 +1,16 @@
+<div data-completed-tasks-for="<%= project.id %>">
+  <% if project.completed_tasks.any? %>
+    <% if project.show_completed_tasks? %>
+      <p>
+        <%= link_to 'Hide completed tasks', toggle_show_completed_tasks_project_path(project), remote: true, method: :post %>
+      </p>
+      <h3>Completed</h3>
+
+      <ul class="tasks completed">
+        <%= render project.completed_tasks %>
+      </ul>
+    <% else %>
+      <%= link_to 'Show completed tasks', toggle_show_completed_tasks_project_path(project), remote: true, method: :post %>
+    <% end %>
+  <% end %>
+</div>

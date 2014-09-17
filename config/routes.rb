@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       member do
         post :archive
         post 'toggle_today'
+        post 'toggle_show_completed_tasks'
         get 'cancel_new_task'
       end
       resources :tasks, only: [:new, :create, :edit, :update, :destroy] do

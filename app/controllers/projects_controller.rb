@@ -51,6 +51,11 @@ class ProjectsController < ApplicationController
     redirect_to context_path(@project.context)
   end
 
+  def toggle_show_completed_tasks
+    @project.toggle(:show_completed_tasks)
+    @project.save
+  end
+
   private
 
   def set_context

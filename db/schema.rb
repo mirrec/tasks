@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140911004507) do
+ActiveRecord::Schema.define(version: 20140917152244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,9 +31,10 @@ ActiveRecord::Schema.define(version: 20140911004507) do
     t.integer  "context_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "today",       default: false
+    t.boolean  "today",                default: false
     t.integer  "position"
-    t.integer  "status",      default: 0
+    t.integer  "status",               default: 0
+    t.boolean  "show_completed_tasks", default: false
   end
 
   add_index "projects", ["context_id"], name: "index_projects_on_context_id", using: :btree
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 20140911004507) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "admin",           default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
