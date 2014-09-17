@@ -12,7 +12,7 @@
 
 <%= div_for @context do %>
   <h3>Today</h3>
-  <div class="today">
+  <div class="today" data-sortable="true" data-update-url="<%= reorder_context_projects_path(@context) %>">
     <% if @context.projects.for_today.any? %>
       <%= render @context.projects.for_today %>
     <% else %>
@@ -26,6 +26,8 @@
   <% if @context.projects.not_for_today.any? %>
     <h3>Later</h3>
 
-    <%= render @context.projects.not_for_today %>
+    <div data-sortable="true" data-update-url="<%= reorder_context_projects_path(@context) %>">
+      <%= render @context.projects.not_for_today %>
+    </div>
   <% end %>
 <% end %>

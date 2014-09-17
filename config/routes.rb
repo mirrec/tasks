@@ -9,6 +9,9 @@ Rails.application.routes.draw do
         post 'toggle_show_completed_tasks'
         get 'cancel_new_task'
       end
+      collection do
+        post 'reorder'
+      end
       resources :tasks, only: [:new, :create, :edit, :update, :destroy] do
         collection do
           post 'reorder'

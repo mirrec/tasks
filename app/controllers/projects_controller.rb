@@ -56,6 +56,13 @@ class ProjectsController < ApplicationController
     @project.save
   end
 
+  def reorder
+    params[:project].try(:each_with_index) do |id, index|
+      scope.find(id).update(position: index + 1)
+    end
+    render nothing: true
+  end
+
   private
 
   def set_context
