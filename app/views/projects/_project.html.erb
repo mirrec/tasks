@@ -28,7 +28,7 @@
     </div>
   <% end %>
 
-  <ul class="tasks uncompleted" data-sortable="true" data-update-url="<%= reorder_project_tasks_path project %>">
+  <ul class="tasks uncompleted" data-sortable="tasks" data-update-url="<%= reorder_project_tasks_path project %>">
     <%= render project.uncompleted_tasks %>
   </ul>
 
