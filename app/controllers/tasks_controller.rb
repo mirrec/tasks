@@ -26,7 +26,7 @@ class TasksController < ApplicationController
   end
 
   def toggle
-    @task.toggle_and_fix_position.save
+    @task.toggle_completed.save
   end
 
   def reorder

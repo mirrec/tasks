@@ -3,6 +3,9 @@
   <span class="task-name"><%= auto_link(task.name, html: { target: '_blank' }) %></span>
   <span class="date pull-right">
     <%= task.created_at.strftime('%d.%m.%Y') %>
+    <% if task.completed? %>
+      / <%= task.completed_at.strftime('%d.%m.%Y') %>
+    <% end %>
   </span>
   <span class="links pull-right">
     <%= link_to 'Edit', edit_task_path(task), remote: true %> /
