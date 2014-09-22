@@ -15,4 +15,5 @@
 //= require jquery.ui.sortable
 //= require turbolinks
 //= require bootstrap/dropdown
+//= require readmore
 //= require_tree .

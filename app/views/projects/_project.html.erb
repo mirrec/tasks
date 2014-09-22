@@ -23,8 +23,10 @@
   </h2>
 
   <% if project.description.present? %>
-    <div class="description well well-sm">
-    <%= auto_link(simple_format(project.description), html: { target: '_blank' }) %>
+    <div class="well well-sm">
+      <div class="description">
+        <%= auto_link(simple_format(project.description), html: { target: '_blank' }) %>
+      </div>
     </div>
   <% end %>
 
