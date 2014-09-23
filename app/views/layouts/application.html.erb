@@ -14,9 +14,10 @@
 
     <ul class="menu list-unstyled">
       <li>Contexts:</li>
-      <% @contexts.each do |context| %>
+      <% @contexts.each_with_index do |context, n| %>
         <%= content_tag_for :li, context do %>
-          <%= link_to context.name, context %>
+          <%= link_to context_link_name(context), context %>
+          <%= '|' if n + 1 < @contexts.size %>
         <% end %>
       <% end %>
     </ul>

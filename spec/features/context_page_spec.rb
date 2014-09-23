@@ -20,4 +20,13 @@ feature 'Context page' do
 
     expect(page).to have_content 'My Project'
   end
+
+  scenario 'menu shows count of projects for today' do
+    context = create(:context, name: 'My Context', user: user)
+    create(:project_for_today, context: context)
+
+    visit root_path
+
+    expect(page).to have_content 'My Context (1)'
+  end
 end

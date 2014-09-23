@@ -7,6 +7,9 @@ FactoryGirl.define do
   factory :project do
     context
     name 'My Project'
+    factory :project_for_today do
+      today true
+    end
   end
 
   factory :task do
