@@ -1,1 +1,0 @@
-$('[data-completed-tasks-for="<%= @project.id %>"]').replaceWith('<%= j render 'completed_tasks', project: @project %>')

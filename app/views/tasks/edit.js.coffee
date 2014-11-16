@@ -1,2 +1,0 @@
-$('#<%= dom_id @task %>').replaceWith('<%= j render 'form', task: @task %>')
-$('#<%= dom_id @task %> input[name="task[name]"]').focus()

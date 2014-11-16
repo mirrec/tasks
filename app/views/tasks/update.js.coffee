@@ -1,1 +1,0 @@
-$('#<%= dom_id @task %>').replaceWith('<%= j render @task %>')
