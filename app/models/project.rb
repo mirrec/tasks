@@ -9,8 +9,6 @@ class Project < ActiveRecord::Base
     -> { where(completed: false) },
     class_name: 'Task'
 
-  scope :for_today, -> { where(today: true) }
-  scope :not_for_today, -> { where(today: false) }
   default_scope { where(status: self.statuses[:active]).order(:position) }
 
   validates :name, presence: true

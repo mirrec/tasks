@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_context, only: [:new, :create]
-  before_action :set_project
+  before_action :set_project, except: [:show]
 
   def new
     @project = @context.projects.new
@@ -29,6 +29,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @project = scope.includes(:completed_tasks, :uncompleted_tasks).find(params[:id])
   end
 
   def destroy

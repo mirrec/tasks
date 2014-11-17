@@ -1,5 +1,5 @@
 class ContextsController < ApplicationController
-  before_action :set_context, only: [:edit, :update, :show, :destroy]
+  before_action :set_context, only: [:edit, :update, :destroy]
 
   def index
   end
@@ -30,6 +30,10 @@ class ContextsController < ApplicationController
   end
 
   def show
+    @context = scope.includes(
+      projects_for_today: [:completed_tasks, :uncompleted_tasks],
+      projects_for_later: [:completed_tasks, :uncompleted_tasks]
+    ).find(params[:id])
   end
 
   def destroy

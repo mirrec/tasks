@@ -27,7 +27,7 @@ PROJECT_NAMES.each_with_index do |project_name, index|
 end
 
 Project.all.each do |project|
-  5.times do |n|
+  10.times do |n|
     project.tasks.create(name: "Task number #{n}")
   end
 end

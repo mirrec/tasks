@@ -13,8 +13,8 @@
 <%= div_for @context do %>
   <h3>Today</h3>
   <div class="today" data-sortable="projects" data-update-url="<%= reorder_context_projects_path(@context) %>">
-    <% if @context.projects.for_today.any? %>
-      <%= render @context.projects.for_today %>
+    <% if @context.projects_for_today.any? %>
+      <%= render @context.projects_for_today %>
     <% else %>
       <p class="well text-center">
         You don't have any tasks for today. Add some!
@@ -23,11 +23,11 @@
   </div>
 
 
-  <% if @context.projects.not_for_today.any? %>
+  <% if @context.projects_for_later.any? %>
     <h3>Later</h3>
 
     <div data-sortable="projects" data-update-url="<%= reorder_context_projects_path(@context) %>">
-      <%= render @context.projects.not_for_today %>
+      <%= render @context.projects_for_later %>
     </div>
   <% end %>
 <% end %>
