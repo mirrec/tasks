@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
 
-gem 'rails', '4.2.0.rc3'
+ruby '2.2.0'
+
+gem 'rails', '4.2.0'
 
 gem 'acts_as_list', '~> 0.5.0', github: 'swanandp/acts_as_list'
 gem 'bcrypt', '~> 3.1.7'
