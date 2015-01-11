@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_context, only: [:new, :create]
   before_action :set_project, except: [:show]
+  before_action :authorize_context, only: [:update]
 
   def new
     @project = @context.projects.new
@@ -76,10 +77,14 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :description, :today)
+    params.require(:project).permit(:name, :description, :today, :context_id)
   end
 
   def scope
     current_user.projects
+  end
+
+  def authorize_context
+    redirect_to @project unless current_user.context_ids.include?(project_params[:context_id].to_i)
   end
 end

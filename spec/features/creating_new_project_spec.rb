@@ -20,14 +20,18 @@ feature 'Managing projects' do
 
   scenario 'editing project' do
     project = create(:project, name: 'My Project', user: user)
+    new_context = create(:context, name: 'New Context', user: user)
 
     visit project_path(project)
     click_button 'More'
     click_link 'Edit'
 
     fill_in 'Name', with: 'Your Project'
+    select 'New Context', from: 'Context'
     click_button 'Update Project'
 
     expect(page).to have_content 'Your Project'
+    project.reload
+    expect(project.context).to eq new_context
   end
 end

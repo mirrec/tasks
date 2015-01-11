@@ -11,6 +11,11 @@
     <%= f.text_area :description, rows: 6, class: 'form-control' %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :context_id %>
+    <%= f.collection_select :context_id, current_user.contexts, :id, :name, {}, class: 'form-control' %>
+  </div>
+
   <div class="checkbox">
     <%= f.label :today, "#{f.check_box :today} For today?".html_safe %>
   </div>
