@@ -48,8 +48,8 @@ class ProjectsController < ApplicationController
 
   def toggle_today
     @project.toggle(:today)
-    @project.fix_position
     @project.save
+    @project.fix_position
 
     redirect_to context_path(@project.context)
   end
