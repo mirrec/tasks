@@ -20,6 +20,10 @@
           <%= '|' if n + 1 < @contexts.size %>
         <% end %>
       <% end %>
+      <li class="hide">
+        |
+        <%= link_to '+ Add context', new_context_path %>
+      </li>
     </ul>
   </div>
 
