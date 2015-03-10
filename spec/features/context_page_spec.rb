@@ -4,8 +4,8 @@ feature 'Context page' do
   let(:user) { sign_in_user }
 
   scenario 'shows link to other contexts' do
-    work_context = FactoryGirl.create(:context, name: 'Work', user: user)
-    personal_context = FactoryGirl.create(:context, name: 'Personal', user: user)
+    work_context = create(:context, name: 'Work', user: user)
+    personal_context = create(:context, name: 'Personal', user: user)
 
     visit context_path(work_context)
 
@@ -14,7 +14,7 @@ feature 'Context page' do
   end
 
   scenario 'shows projects' do
-    project = FactoryGirl.create(:project, name: 'My Project', user: user)
+    project = create(:project, name: 'My Project', user: user)
 
     visit context_path(project.context)
 
@@ -28,5 +28,14 @@ feature 'Context page' do
     visit root_path
 
     expect(page).to have_content 'My Context (1)'
+  end
+
+  scenario 'redirects to last visited context' do
+    context2 = create(:context, user: user)
+
+    visit context_path(context2)
+    visit contexts_path
+
+    expect(current_path).to eq context_path(context2)
   end
 end

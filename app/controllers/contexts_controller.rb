@@ -2,6 +2,9 @@ class ContextsController < ApplicationController
   before_action :set_context, only: [:edit, :update, :destroy]
 
   def index
+    if last_context
+      redirect_to last_context
+    end
   end
 
   def new
@@ -34,6 +37,7 @@ class ContextsController < ApplicationController
       projects_for_today: [:completed_tasks, :uncompleted_tasks],
       projects_for_later: [:completed_tasks, :uncompleted_tasks]
     ).find(params[:id])
+    save_last_context
   end
 
   def destroy
@@ -53,5 +57,14 @@ class ContextsController < ApplicationController
 
   def scope
     current_user.contexts
+  end
+
+  def last_context
+    @_last_context ||= scope.find(cookies[:last_context_id])
+  rescue ActiveRecord::RecordNotFound
+  end
+
+  def save_last_context
+    cookies.permanent[:last_context_id] = @context.id
   end
 end
