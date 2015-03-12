@@ -1,14 +1,13 @@
 class ProjectsController < ApplicationController
-  before_action :set_context, only: [:new, :create]
   before_action :set_project, except: [:show]
   before_action :authorize_context, only: [:update]
 
   def new
-    @project = @context.projects.new
+    @project = scope.new
   end
 
   def create
-    @project = @context.projects.build(project_params)
+    @project = scope.build(project_params)
 
     if @project.save
       @project.move_to_top
@@ -68,10 +67,6 @@ class ProjectsController < ApplicationController
 
   private
 
-  def set_context
-    @context = current_user.contexts.find(params[:context_id])
-  end
-
   def set_project
     @project = scope.find(params[:id]) if params[:id]
   end
@@ -81,7 +76,15 @@ class ProjectsController < ApplicationController
   end
 
   def scope
-    current_user.projects
+    if params[:context_id]
+      context.projects
+    else
+      current_user.projects
+    end
+  end
+
+  def context
+    current_user.contexts.find(params[:context_id])
   end
 
   def authorize_context
