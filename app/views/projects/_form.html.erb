@@ -1,4 +1,4 @@
-<%= form_for [@context, @project], role: 'form' do |f| %>
+<%= form_for shallow_args(@project.context, @project), role: 'form' do |f| %>
   <%= render 'application/form_errors', object: f.object %>
 
   <div class="form-group">
