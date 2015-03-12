@@ -33,10 +33,7 @@ class ContextsController < ApplicationController
   end
 
   def show
-    @context = scope.includes(
-      projects_for_today: [:completed_tasks, :uncompleted_tasks],
-      projects_for_later: [:completed_tasks, :uncompleted_tasks]
-    ).find(params[:id])
+    @context = scope.with_all_projects.find(params[:id])
     save_last_context
   end
 

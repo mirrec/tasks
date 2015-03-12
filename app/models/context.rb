@@ -9,4 +9,11 @@ class Context < ActiveRecord::Base
     class_name: 'Project'
 
   validates :name, presence: true
+
+  scope :with_all_projects, -> {
+    includes(
+      projects_for_today: [:completed_tasks, :uncompleted_tasks],
+      projects_for_later: [:completed_tasks, :uncompleted_tasks]
+    )
+  }
 end
