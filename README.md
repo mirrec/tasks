@@ -6,6 +6,7 @@ But it is just for me and the code is full of experiments...
 
 ```
 git clone https://github.com/mrhead/tasks
+cd tasks
 bundle install
 rake db:create db:setup # you need postgresql installed
 rails s
