@@ -7,4 +7,3 @@ $(document).on 'ready page:load ajaxComplete', ->
   $('[data-sortable="projects"]').sortable
     update: ->
       $.post($(this).data('update-url'), $(this).sortable('serialize'))
-
