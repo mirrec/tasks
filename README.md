@@ -1,6 +1,7 @@
 # All TODO lists suck. This one sucks less.
 
-But it is just for me and the code is full of experiments...
+![out](https://cloud.githubusercontent.com/assets/522375/6764046/83d838f0-cf9c-11e4-8a6d-ed9057c4c708.gif)
+
 
 ## Technical stack
 
