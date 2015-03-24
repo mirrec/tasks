@@ -12,7 +12,7 @@ class Project < ActiveRecord::Base
   default_scope { where(status: self.statuses[:active]).order(:position) }
 
   validates :name, presence: true
-  acts_as_list scope: [:context_id, :today]
+  acts_as_list scope: [:context_id, :today], add_new_at: :top
   enum status: [:active, :archived]
 
   def fix_position

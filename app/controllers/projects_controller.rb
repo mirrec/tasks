@@ -10,7 +10,6 @@ class ProjectsController < ApplicationController
     @project = scope.build(project_params)
 
     if @project.save
-      @project.move_to_top
       redirect_to project_url(@project)
     else
       render 'new'
