@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = scope.includes(:completed_tasks, :uncompleted_tasks).find(params[:id])
+    @project = scope.include_all_tasks.find(params[:id])
   end
 
   def destroy

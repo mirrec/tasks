@@ -9,10 +9,13 @@ class Project < ActiveRecord::Base
     -> { where(completed: false) },
     class_name: 'Task'
 
-  default_scope { where(status: self.statuses[:active]).order(:position) }
-
   validates :name, presence: true
+
+  default_scope { where(status: self.statuses[:active]).order(:position) }
+  scope :include_all_tasks, -> { includes(:completed_tasks, :uncompleted_tasks) }
+
   acts_as_list scope: [:context_id, :today], add_new_at: :top
+
   enum status: [:active, :archived]
 
   def fix_position
