@@ -18,6 +18,14 @@ class Project < ActiveRecord::Base
 
   enum status: [:active, :archived]
 
+  def toggle_today
+    toggle(:today)
+    save
+    fix_position
+  end
+
+  private
+
   def fix_position
     if today?
       move_to_bottom

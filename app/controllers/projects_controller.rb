@@ -33,11 +33,13 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.destroy
+
     redirect_via_turbolinks_to context_path(@project.context)
   end
 
   def archive
     @project.archived!
+
     redirect_via_turbolinks_to context_path(@project.context)
   end
 
@@ -45,9 +47,7 @@ class ProjectsController < ApplicationController
   end
 
   def toggle_today
-    @project.toggle(:today)
-    @project.save
-    @project.fix_position
+    @project.toggle_today
 
     redirect_to context_path(@project.context)
   end
