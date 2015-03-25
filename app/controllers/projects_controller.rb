@@ -61,6 +61,7 @@ class ProjectsController < ApplicationController
     params[:project].try(:each_with_index) do |id, index|
       scope.find(id).update(position: index + 1)
     end
+
     render nothing: true
   end
 
