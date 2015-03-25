@@ -1,13 +1,13 @@
 class ProjectsController < ApplicationController
   before_action :set_project, except: [:show]
-  before_action :authorize_context, only: [:update]
+  before_action :authorize_context, only: [:create, :update]
 
   def new
     @project = scope.new
   end
 
   def create
-    @project = scope.build(project_params)
+    @project = current_user.projects.build(project_params)
 
     if @project.save
       redirect_to project_url(@project)
